@@ -1,0 +1,25 @@
+task3:
+import re
+
+# 1. File paths
+input_file = "sample.txt"         # Input .txt file with text
+output_file = "emails_found.txt"  # Output file to save extracted emails
+
+# 2. Regular expression for email pattern
+email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
+
+# 3. Read content and extract emails
+try:
+    with open(input_file, 'r') as file:
+        content = file.read()
+        emails = re.findall(email_pattern, content)
+    
+    # 4. Write emails to output file
+    with open(output_file, 'w') as file:
+        for email in emails:
+            file.write(email + '\n')
+
+    print(f"✅ Extracted {len(emails)} email(s) and saved to '{output_file}'.")
+
+except FileNotFoundError:
+    print(f"❌ Error: '{input_file}' not found. Please check the file name and path.")
